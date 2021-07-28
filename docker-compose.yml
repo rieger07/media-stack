@@ -46,7 +46,7 @@ services:
     container_name: jackett
     environment:
       - PUID=${ID}
-      - PGID=${GOUP}
+      - PGID=${GROUP}
       - TZ=${TIMEZONE}
       - AUTO_UPDATE=true #optional
     volumes:
