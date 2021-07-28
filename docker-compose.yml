@@ -55,4 +55,15 @@ services:
     ports:
       - 9117:9117
     restart: unless-stopped
-    
+  flaresolverr:
+    # DockerHub mirror flaresolverr/flaresolverr:latest
+    image: ghcr.io/flaresolverr/flaresolverr:latest
+    container_name: flaresolverr
+    environment:
+      - LOG_LEVEL=info
+      - LOG_HTML=false
+      - CAPTCHA_SOLVER=hcaptcha-solver
+      - TZ=${TIMEZONE}
+    ports:
+      - 8191:8191
+    restart: unless-stopped 
