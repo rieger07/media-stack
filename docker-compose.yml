@@ -1,0 +1,58 @@
+version: "2.1"
+services:
+  ombi:
+    image: ghcr.io/linuxserver/ombi
+    container_name: ombi
+    environment:
+      - PUID=${ID}
+      - PGID=${GROUP}
+      - TZ=${TIMEZONE}
+      - BASE_URL=/ombi #optional
+    volumes:
+      - ${OMBI_VOLUME}:/config
+    ports:
+      - 3579:3579
+    restart: unless-stopped
+  radarr:
+    image: ghcr.io/linuxserver/radarr
+    container_name: radarr
+    environment:
+      - PUID=${ID}
+      - PGID=${GROUP}
+      - TZ=${TIMEZONE}
+    volumes:
+      - ${RADARR_VOLUME}:/config
+      - ${MOVIES}:/movies #optional
+      - ${DOWNLOADS}:/downloads #optional
+    ports:
+      - 7878:7878
+    restart: unless-stopped
+  sonarr:
+    image: ghcr.io/linuxserver/sonarr
+    container_name: sonarr
+    environment:
+      - PUID=${ID}
+      - PGID=${GROUP}
+      - TZ=${TIMEZONE}
+    volumes:
+      - ${SONARR_VOLUME}:/config
+      - ${SHOWS}:/tv #optional
+      - ${DOWNLOADS}:/downloads #optional
+    ports:
+      - 8989:8989
+    restart: unless-stopped
+  jackett:
+    image: ghcr.io/linuxserver/jackett
+    container_name: jackett
+    environment:
+      - PUID=${ID}
+      - PGID=${GOUP}
+      - TZ=${TIMEZONE}
+      - AUTO_UPDATE=true #optional
+    volumes:
+      - ${JACKETT_VOLUME}:/config
+      - ${BLACKHOLE}:/downloads
+    ports:
+      - 9117:9117
+    restart: unless-stopped
+    
