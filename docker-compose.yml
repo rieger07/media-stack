@@ -23,7 +23,7 @@ services:
     volumes:
       - ${RADARR_VOLUME}:/config
       - ${MOVIES}:/movies #optional
-      - ${DOWNLOADS}:/downloads #optional
+      - ${DOWNLOADS}/Movies:/downloads #optional
     ports:
       - 7878:7878
     restart: unless-stopped
@@ -37,7 +37,7 @@ services:
     volumes:
       - ${SONARR_VOLUME}:/config
       - ${SHOWS}:/tv #optional
-      - ${DOWNLOADS}:/downloads #optional
+      - ${DOWNLOADS}/Shows:/downloads #optional
     ports:
       - 8989:8989
     restart: unless-stopped
