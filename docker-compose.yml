@@ -55,6 +55,8 @@ services:
     ports:
       - 9117:9117
     restart: unless-stopped
+    sysctls:
+      - net.ipv6.conf.all.disable_ipv6=1
   flaresolverr:
     # DockerHub mirror flaresolverr/flaresolverr:latest
     image: ghcr.io/flaresolverr/flaresolverr:latest
@@ -66,3 +68,5 @@ services:
     ports:
       - 8191:8191
     restart: unless-stopped 
+    sysctls:
+      - net.ipv6.conf.all.disable_ipv6=1
