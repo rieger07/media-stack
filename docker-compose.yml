@@ -62,7 +62,6 @@ services:
     environment:
       - LOG_LEVEL=info
       - LOG_HTML=false
-      - CAPTCHA_SOLVER=hcaptcha-solver
       - TZ=${TIMEZONE}
     ports:
       - 8191:8191
