@@ -85,3 +85,17 @@ services:
     volumes:
       - ${NGINX}:/data
       - ${CERTBOT}:/etc/letsencrypt
+  bazarr:
+    image: ghcr.io/linuxserver/bazarr
+    container_name: bazarr
+    environment:
+      - PUID=${ID}
+      - PGID=${GROUP}
+      - TZ=${TIMEZONE}
+    volumes:
+      - /volume1/docker/bazarr:/config
+      #- /path/to/movies:/movies #optional
+      #- /path/to/tv:/tv #optional
+    ports:
+      - 6767:6767
+    restart: unless-stopped
