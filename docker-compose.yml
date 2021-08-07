@@ -94,8 +94,10 @@ services:
       - TZ=${TIMEZONE}
     volumes:
       - /volume1/docker/bazarr:/config
-      #- /path/to/movies:/movies #optional
-      #- /path/to/tv:/tv #optional
+      - ${SHOWS}:/tv
+      - ${DOWNLOADS}/BackblazeShows:/tv2
+      - ${MOVIES}:/movies
+      - ${DOWNLOADS}/BackblazeMovies:/movies2
     ports:
       - 6767:6767
     restart: unless-stopped
