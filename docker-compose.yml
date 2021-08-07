@@ -101,3 +101,15 @@ services:
     ports:
       - 6767:6767
     restart: unless-stopped
+  tautulli:
+    image: ghcr.io/linuxserver/tautulli
+    container_name: tautulli
+    environment:
+      - PUID=${ID}
+      - PGID=${GROUP}
+      - TZ=${TIMEZONE}
+    volumes:
+      - /volume1/docker/tautulli:/config
+    ports:
+      - 8181:8181
+    restart: unless-stopped
