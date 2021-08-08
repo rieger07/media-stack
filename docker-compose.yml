@@ -113,3 +113,12 @@ services:
     ports:
       - 8181:8181
     restart: unless-stopped
+  tunnel:
+    image: cagataygurturk/docker-ssh-tunnel:0.0.1
+    volumes:
+      - $HOME/.ssh:/root/ssh:ro
+    environment:
+      TUNNEL_HOST: seedbox-tunnel
+      REMOTE_HOST: tityos.feralhosting.com
+      LOCAL_PORT: 17775
+      REMOTE_PORT: 17775
