@@ -116,7 +116,7 @@ services:
   tunnel:
     image: cagataygurturk/docker-ssh-tunnel:0.0.1
     volumes:
-      - /home/rieger07/.ssh:/root/ssh:ro
+      - /var/services/homes/rieger07/.ssh:/root/ssh:ro
     environment:
       TUNNEL_HOST: seedbox-tunnel
       REMOTE_HOST: tityos.feralhosting.com
