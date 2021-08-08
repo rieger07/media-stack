@@ -117,8 +117,4 @@ services:
     image: cagataygurturk/docker-ssh-tunnel:0.0.1
     volumes:
       - /var/services/homes/rieger07/.ssh:/root/ssh:ro
-    command: ssh -D ${PORT} -l ${USER} ${REMOTE_HOST}
-    environment:
-      REMOTE_HOST: tityos.feralhosting.com
-      PORT: 17775
-      USER: asralis
+    command: ssh -D 17775 -l asralis tityos.feralhosting.com
