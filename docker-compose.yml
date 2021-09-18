@@ -113,11 +113,3 @@ services:
     ports:
       - 8181:8181
     restart: unless-stopped
-  tunnel:
-    image: cagataygurturk/docker-ssh-tunnel:0.0.1
-    volumes:
-      - /var/services/homes/rieger07/.ssh_root:/root/.ssh:ro
-    command: ssh -o StrictHostKeyChecking=no -D 17775 -l asralis tityos.feralhosting.com
-    ports:
-      - 80:80
-    restart: unless-stopped
