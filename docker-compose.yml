@@ -120,14 +120,15 @@ services:
       - "53:53/tcp"
       - "53:53/udp"
       - "67:67/udp"
-      - "8081:80/tcp"
+      - "8081:8081/tcp"
     environment:
       TZ: 'America/Chicago'
       WEBPASSWORD: ${SECURE}
     # Volumes store your data between container upgrades
     volumes:
       - /volume1/docker/pihole:/etc/pihole/
-      - /volume1/docker/etc-dnsmasq.d/:/etc/dnsmasq.d/'
+      - /volume1/docker/etc-dnsmasq.d/:/etc/dnsmasq.d/
+      - /volume1/docker/pihole-lighttdp/:/etc/lighttpd/
     # Recommended but not required (DHCP needs NET_ADMIN)
     #   https://github.com/pi-hole/docker-pi-hole#note-on-capabilities
     cap_add:
