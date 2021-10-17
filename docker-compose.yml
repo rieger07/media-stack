@@ -124,6 +124,7 @@ services:
     environment:
       TZ: 'America/Chicago'
       WEBPASSWORD: ${SECURE}
+      WEB_PORT: 8081
     # Volumes store your data between container upgrades
     volumes:
       - /volume1/docker/pihole:/etc/pihole/
