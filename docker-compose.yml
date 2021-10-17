@@ -129,7 +129,6 @@ services:
     volumes:
       - /volume1/docker/pihole:/etc/pihole/
       - /volume1/docker/etc-dnsmasq.d/:/etc/dnsmasq.d/
-      - /volume1/docker/pihole-lighttdp/:/etc/lighttpd/
     # Recommended but not required (DHCP needs NET_ADMIN)
     #   https://github.com/pi-hole/docker-pi-hole#note-on-capabilities
     cap_add:
