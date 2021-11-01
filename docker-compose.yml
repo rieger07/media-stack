@@ -121,14 +121,17 @@ services:
       options:
         loki-url: "${LOKI_IP}/api/v1/push"
   app:
-    image: 'jc21/nginx-proxy-manager:2.9.5'
+    image: 'jc21/nginx-proxy-manager:latest'
     restart: unless-stopped
     ports:
       - '8080:80'
       - '9001:81'
       - '4443:443'
     environment:
-      DB_SQLITE_FILE: "/data/database.sqlite"
+      DB_MYSQL_HOST: "mysql_db"
+      DB_MYSQL_USER: "npm"
+      DB_MYSQL_PASSWORD: "${SECURE}"
+      DB_MYSQL_NAME: "npm"
       DISABLE_IPV6: 'true'
     volumes:
       - ${NGINX}:/data
