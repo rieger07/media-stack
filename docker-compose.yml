@@ -15,6 +15,10 @@ services:
     depends_on:
         - "mysql_db"
     restart: unless-stopped
+    logging:
+      driver: loki
+      options:
+        loki-url: "${LOKI_IP}/api/v1/push"
   mysql_db:
     image: "mysql:5.7"
     container_name: ombi_mysql
@@ -23,6 +27,10 @@ services:
       MYSQL_ROOT_PASSWORD: ${SECURE}
     volumes:
       -  ${OMBI_VOLUME}-mysql:/var/lib/mysql
+    logging:
+      driver: loki
+      options:
+        loki-url: "${LOKI_IP}/api/v1/push"
   phpmyadmin:
       image: phpmyadmin/phpmyadmin
       container_name: ombi_phpmyadmin
@@ -33,6 +41,10 @@ services:
         - '8990:80'
       depends_on:
         - "mysql_db"
+      logging:
+        driver: loki
+        options:
+          loki-url: "${LOKI_IP}/api/v1/push"
   radarr:
     image: ghcr.io/linuxserver/radarr
     container_name: radarr
@@ -48,6 +60,10 @@ services:
     ports:
       - 7878:7878
     restart: unless-stopped
+    logging:
+      driver: loki
+      options:
+        loki-url: "${LOKI_IP}/api/v1/push"
   sonarr:
     image: ghcr.io/linuxserver/sonarr
     container_name: sonarr
@@ -63,6 +79,10 @@ services:
     ports:
       - 8989:8989
     restart: unless-stopped
+    logging:
+      driver: loki
+      options:
+        loki-url: "${LOKI_IP}/api/v1/push"
   jackett:
     image: ghcr.io/linuxserver/jackett
     container_name: jackett
@@ -79,6 +99,10 @@ services:
     restart: unless-stopped
     sysctls:
       - net.ipv6.conf.all.disable_ipv6=1
+    logging:
+      driver: loki
+      options:
+        loki-url: "${LOKI_IP}/api/v1/push"
   flaresolverr:
     # DockerHub mirror flaresolverr/flaresolverr:latest
     image: ghcr.io/flaresolverr/flaresolverr:latest
@@ -92,6 +116,10 @@ services:
     restart: unless-stopped 
     sysctls:
       - net.ipv6.conf.all.disable_ipv6=1
+    logging:
+      driver: loki
+      options:
+        loki-url: "${LOKI_IP}/api/v1/push"
   app:
     image: 'jc21/nginx-proxy-manager:2.9.5'
     restart: unless-stopped
@@ -105,6 +133,10 @@ services:
     volumes:
       - ${NGINX}:/data
       - ${CERTBOT}:/etc/letsencrypt
+    logging:
+      driver: loki
+      options:
+        loki-url: "${LOKI_IP}/api/v1/push"
   bazarr:
     image: ghcr.io/linuxserver/bazarr
     container_name: bazarr
@@ -121,6 +153,10 @@ services:
     ports:
       - 6767:6767
     restart: unless-stopped
+    logging:
+      driver: loki
+      options:
+        loki-url: "${LOKI_IP}/api/v1/push"
   tautulli:
     image: ghcr.io/linuxserver/tautulli
     container_name: tautulli
@@ -133,6 +169,10 @@ services:
     ports:
       - 8181:8181
     restart: unless-stopped
+    logging:
+      driver: loki
+      options:
+        loki-url: "${LOKI_IP}/api/v1/push"
   pihole:
     container_name: pihole
     image: pihole/pihole:latest
@@ -155,3 +195,7 @@ services:
       - NET_ADMIN
     restart: unless-stopped
     network_mode: host
+    logging:
+      driver: loki
+      options:
+        loki-url: "${LOKI_IP}/api/v1/push"
