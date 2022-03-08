@@ -224,3 +224,18 @@ services:
       - /volume1/docker/tdarr/logs:/app/logs
       - /volume1/:/media
       - /volume1/docker/transcode_cache:/temp
+  lazylibrarian:
+    image: lscr.io/linuxserver/lazylibrarian:latest
+    container_name: lazylibrarian
+    environment:
+      - PUID=${ID}
+      - PGID=${GROUP}
+      - TZ=${TIMEZONE}
+      - DOCKER_MODS=linuxserver/calibre-web:calibre|linuxserver/mods:lazylibrarian-ffmpeg #optional
+    volumes:
+      - /volume1/docker/lazylibrarian/config:/config
+      - /volume1/docker/lazylibrarian/downloads/:/downloads
+      - /volume1/docker/lazylibrarian/data/:/books #optional
+    ports:
+      - 5299:5299
+    restart: unless-stopped
