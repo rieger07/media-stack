@@ -60,7 +60,7 @@ services:
       container_name: ombi_phpmyadmin
       restart: unless-stopped
       environment:
-        PMA_HOST: mysql_db
+        PMA_HOST: localhost
       network_mode: "service:gluetun"
       depends_on:
         - "mysql_db"
@@ -143,7 +143,7 @@ services:
     image: 'jc21/nginx-proxy-manager:latest'
     restart: unless-stopped
     environment:
-      DB_MYSQL_HOST: "mysql_db"
+      DB_MYSQL_HOST: "localhost"
       DB_MYSQL_PORT: 3306
       DB_MYSQL_USER: "npm"
       DB_MYSQL_PASSWORD: "${SECURE}"
