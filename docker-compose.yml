@@ -44,7 +44,7 @@ services:
         loki-url: "${LOKI_IP}/api/v1/push"
   mysql_db:
     image: "mysql:5.7"
-    container_name: ombi_mysql
+    container_name: mysql_db
     restart: unless-stopped
     environment:
       MYSQL_ROOT_PASSWORD: ${SECURE}
