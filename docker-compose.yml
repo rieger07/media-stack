@@ -142,8 +142,6 @@ services:
   app:
     image: 'jc21/nginx-proxy-manager:latest'
     restart: unless-stopped
-    ports:
-      
     environment:
       DB_MYSQL_HOST: "mysql_db"
       DB_MYSQL_PORT: 3306
