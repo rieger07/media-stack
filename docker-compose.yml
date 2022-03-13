@@ -5,7 +5,7 @@ services:
     cap_add:
       - NET_ADMIN
     volumes:
-      - gluetun:/gluetun
+      - /volume1/docker/gluetun:/gluetun
     environment:
       - VPN_SERVICE_PROVIDER=private internet access
       - OPENVPN_USER=${PIA_USER}
