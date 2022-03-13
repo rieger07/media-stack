@@ -55,19 +55,19 @@ services:
       driver: loki
       options:
         loki-url: "${LOKI_IP}/api/v1/push"
-  phpmyadmin:
-      image: phpmyadmin/phpmyadmin
-      container_name: ombi_phpmyadmin
-      restart: unless-stopped
-      environment:
-        PMA_HOST: localhost
-      network_mode: "service:gluetun"
-      depends_on:
-        - "mysql_db"
-      logging:
-        driver: loki
-        options:
-          loki-url: "${LOKI_IP}/api/v1/push"
+#  phpmyadmin:
+#      image: phpmyadmin/phpmyadmin
+#      container_name: ombi_phpmyadmin
+#      restart: unless-stopped
+#      environment:
+#        PMA_HOST: localhost
+#      network_mode: "service:gluetun"
+#      depends_on:
+#        - "mysql_db"
+#      logging:
+#        driver: loki
+#        options:
+#          loki-url: "${LOKI_IP}/api/v1/push"
   radarr:
     image: ghcr.io/linuxserver/radarr
     container_name: radarr
