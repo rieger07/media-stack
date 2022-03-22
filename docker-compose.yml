@@ -44,25 +44,25 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: ${SECURE}
     volumes:
-      -  ${OMBI_VOLUME}-mysql:/var/lib/mysql
+      - ${OMBI_VOLUME}-mysql:/var/lib/mysql
     logging:
       driver: loki
       options:
         loki-url: "${LOKI_IP}/api/v1/push"
-#  phpmyadmin:
-#      image: phpmyadmin/phpmyadmin
-#      container_name: ombi_phpmyadmin
-#      restart: unless-stopped
-#      environment:
-#        PMA_HOST: localhost
-#   ports:
-#     - 8990:80   # phpadmin
-#      depends_on:
-#        - "mysql_db"
-#      logging:
-#        driver: loki
-#        options:
-#          loki-url: "${LOKI_IP}/api/v1/push"
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: ombi_phpmyadmin
+    restart: unless-stopped
+    environment:
+      PMA_HOST: localhost
+    ports:
+      - 8990:80   # phpadmin
+    depends_on:
+      - "mysql_db"
+    logging:
+      driver: loki
+      options:
+        loki-url: "${LOKI_IP}/api/v1/push"
   radarr:
     image: ghcr.io/linuxserver/radarr
     container_name: radarr
