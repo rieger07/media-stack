@@ -54,7 +54,7 @@ services:
     container_name: ombi_phpmyadmin
     restart: unless-stopped
     environment:
-      PMA_HOST: localhost
+      PMA_HOST: mysql_db
     ports:
       - 8990:80   # phpadmin
     depends_on:
