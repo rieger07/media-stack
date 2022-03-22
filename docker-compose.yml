@@ -45,7 +45,6 @@ services:
       MYSQL_ROOT_PASSWORD: ${SECURE}
     volumes:
       -  ${OMBI_VOLUME}-mysql:/var/lib/mysql
-    network_mode: "service:gluetun"
     logging:
       driver: loki
       options:
