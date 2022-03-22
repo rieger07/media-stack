@@ -12,17 +12,11 @@ services:
       - OPENVPN_PASSWORD=${PIA_PASS}
       - SERVER_REGIONS=US New York,US East
     ports:
-      - 3579:3579 # ombi
-      - 8990:80   # phpadmin
       - 7878:7878 # radarr
       - 8989:8989 # sonarr
       - 9117:9117 # jackett
       - 8191:8191 # flaresolver
-      - 8080:80   # npm
-      - 9001:81   # npm
-      - 4443:443  # npm
       - 6767:6767 # bazaar
-      - 8181:8181 # tautulli
       - 5299:5299 # lazylibrarian
   ombi:
     image: ghcr.io/linuxserver/ombi
@@ -34,7 +28,8 @@ services:
       - BASE_URL=/ombi #optional
     volumes:
       - ${OMBI_VOLUME}-config:/config
-    network_mode: "service:gluetun"
+    ports:
+      - 3579:3579 # ombi
     depends_on:
         - "mysql_db"
     restart: unless-stopped
@@ -61,7 +56,8 @@ services:
 #      restart: unless-stopped
 #      environment:
 #        PMA_HOST: localhost
-#      network_mode: "service:gluetun"
+#   ports:
+#     - 8990:80   # phpadmin
 #      depends_on:
 #        - "mysql_db"
 #      logging:
@@ -149,7 +145,10 @@ services:
       DB_MYSQL_PASSWORD: "${SECURE}"
       DB_MYSQL_NAME: "npm"
       DISABLE_IPV6: 'true'
-    network_mode: "service:gluetun"
+    ports:
+      - 8080:80   # npm
+      - 9001:81   # npm
+      - 4443:443  # npm
     volumes:
       - ${NGINX}:/data
       - ${CERTBOT}:/etc/letsencrypt
@@ -185,7 +184,8 @@ services:
       - TZ=${TIMEZONE}
     volumes:
       - /volume1/docker/tautulli:/config
-    network_mode: "service:gluetun"
+    ports:
+      - 8181:8181 # tautulli
     restart: unless-stopped
     logging:
       driver: loki
